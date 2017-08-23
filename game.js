@@ -48,9 +48,6 @@ var createScene = function (engine, canvas) {
 	ground.position.y = 0;
 	ground.material = groundMaterial;
 
-	// Torus
-	var torus = BABYLON.Mesh.CreateTorus("torus", 4, 2, 30, scene, false);
-
 	// Shadows
 	var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
 	shadowGenerator.getShadowMap().renderList.push(torus);
@@ -62,17 +59,8 @@ var createScene = function (engine, canvas) {
 
 	ground.receiveShadows = true;
 
-	// Animations
-	var alpha = 0;
-	scene.registerBeforeRender(function () {
-		torus.rotation.x += 0.01;
-		torus.rotation.z += 0.02;
-
-		torus.position = new BABYLON.Vector3(Math.cos(alpha) * 30, 10, Math.sin(alpha) * 30);
-		alpha += 0.01;
-	});
-
   // Dude
+  camera.lockedTarget = new Player();
 
 	return scene;
 }

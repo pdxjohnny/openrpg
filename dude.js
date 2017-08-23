@@ -19,18 +19,18 @@ var createScene = function (engine, canvas) {
     // Shadows
     var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
 
-        
+
         // Dude
         BABYLON.SceneLoader.ImportMesh("him", "textures/Dude/", "Dude.babylon", scene, function (newMeshes2, particleSystems2, skeletons2) {
             var dude = newMeshes2[0];
-            
+
             for (var index = 0; index < newMeshes2.length; index++) {
                 shadowGenerator.getShadowMap().renderList.push(newMeshes2[index]);
             }
 
             dude.rotation.y = Math.PI;
             dude.position = new BABYLON.Vector3(0, 0, -80);
-                
+
             scene.beginAnimation(skeletons2[0], 0, 100, true, 1.0);
         });
 
